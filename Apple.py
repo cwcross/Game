@@ -12,6 +12,6 @@ class Apple:
         self.grid = grid
     
     def eat(self):
-        self.x = random.randint(0, self.x_max)
-        self.y = random.randint(0, self.y_max)
+        self.x = random.randint(10, self.x_max)
+        self.y = random.randint(10, self.y_max)
         

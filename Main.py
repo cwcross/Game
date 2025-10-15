@@ -4,9 +4,10 @@ from Apple import Apple
 from Snake import Snake
 
 pygame.init()
-SCREEN_WIDTH, SCREEN_HEIGHT = 400, 400
+SCREEN_WIDTH, SCREEN_HEIGHT = 300, 300
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.SCALED)
+pygame.display.set_caption("Snake")
 clock = pygame.time.Clock()
 snake_move_interval = 150  # milliseconds per snake step
 last_move_time = pygame.time.get_ticks()
@@ -26,7 +27,7 @@ dir_to_coord = {
     }
 
 # Create object on screen
-grid = Grid(SCREEN_WIDTH,SCREEN_HEIGHT)
+grid = Grid(SCREEN_WIDTH-20,SCREEN_HEIGHT-20)
 snake = Snake((0,25),grid)
 apple = Apple(grid)
 
@@ -37,6 +38,7 @@ run = True
 while run:
 
     screen.fill((0,0,0))
+    
 
     pygame.draw.circle(screen, apple.color,(apple.x,apple.y), 6)
 
@@ -74,7 +76,7 @@ while run:
     if snake.alive == False:
         break
 
-    clock.tick(60)
+    clock.tick(90)
 
     pygame.display.update()
 
