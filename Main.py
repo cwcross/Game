@@ -29,8 +29,11 @@ dir_to_coord = {
 # Create object on screen
 grid = Grid(SCREEN_WIDTH-20,SCREEN_HEIGHT-20)
 snake = Snake((0,25),grid)
-apple = Apple(grid)
-
+num_apples = 1
+apples = []
+for i in range(num_apples):
+    apple = Apple(grid)
+    apples.append(apple)
 
 
 # Running loop
@@ -40,7 +43,9 @@ while run:
     screen.fill((0,0,0))
     
 
-    pygame.draw.circle(screen, apple.color,(apple.x,apple.y), 6)
+    for apple in apples:
+        pygame.draw.circle(screen, apple.color,(apple.x,apple.y), 6)
+
 
     for part in snake.body:
         pygame.draw.rect(screen, snake.color, part, 0)
@@ -66,9 +71,10 @@ while run:
 
 
     head = snake.body[0]
-    if abs(head.x + 10 - apple.x) < 20 and abs(head.y + 10 - apple.y) < 12:
-        apple.eat()
-        snake.grow()
+    for apple in apples:
+        if abs(head.x + 10 - apple.x) < 20 and abs(head.y + 10 - apple.y) < 12:
+            apple.eat()
+            snake.grow()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT: run = False
